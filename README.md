@@ -4,16 +4,16 @@
 
 <h1>Operations Landing Zone Platform</h1>
 
-<p><strong>The Institutional Command Center for SRE Automation, Incident Response, and Unified Governance</strong></p>
+<p><strong>The Institutional Command Center for SRE Automation, Incident Response, and Unified Service Management Governance.</strong></p>
 
-[![Standard: Operations](https://img.shields.io/badge/Standard-Operations-blue.svg?style=for-the-badge&labelColor=000000)]()
-[![Status: Production--Ready](https://img.shields.io/badge/Status-Production--Ready-blue.svg?style=for-the-badge&labelColor=000000)]()
-[![Domain: SRE](https://img.shields.io/badge/Domain-SRE-emerald.svg?style=for-the-badge&labelColor=000000)]()
+[![Standard: Operations-Excellence](https://img.shields.io/badge/Standard-Operations--Excellence-blue.svg?style=for-the-badge&labelColor=000000)]()
+[![Status: Production--Ready](https://img.shields.io/badge/Status-Production--Ready-emerald.svg?style=for-the-badge&labelColor=000000)]()
+[![Focus: SRE--Automation](https://img.shields.io/badge/Focus-SRE--Automation-indigo.svg?style=for-the-badge&labelColor=000000)]()
 
 <br/>
 
 > **"Hope is not a strategy. Automation is."** 
-> The Operations Landing Zone is an isolated, highly available operational control plane. It acts as the secure nerve center for all DevOps, SRE, and Platform Engineering teams. By consolidating incident management, runbook automation, ChatOps, and compliance governance into a single pane, it radically reduces Mean Time To Recovery (MTTR) and prevents operational drift across thousands of multi-cloud workloads.
+> **Operations Landing Zone** is an enterprise-grade platform designed to provide a secure, measurable, and highly automated foundation for global service management. It orchestrates the complex lifecycle of infrastructure operations—from real-time monitoring and anomaly detection to automated self-healing remediation and unified incident governance.
 
 </div>
 
@@ -21,640 +21,263 @@
 
 ## 🏛️ Executive Summary
 
-The **Operations Landing Zone Platform** solves the "Tool Sprawl" problem. As engineering organizations scale, operational knowledge becomes scattered across disparate wikis, standalone shell scripts, unmaintained Jenkins servers, and isolated ChatOps bots. This fragmentation makes incident response chaotic and compliance auditing nearly impossible.
+Fragmented operational tools and manual incident response procedures are strategic operational liabilities; lack of a centralized operations plane is a primary barrier to organizational reliability. Organizations fail to maintain high availability not because of a lack of talent, but because of fragmented monitoring standards, lack of automated runbooks, and an inability to orchestrate remediation with operational precision.
 
-This platform provides a hardened, unified interface. Built on **FastAPI**, **React 18**, and **Kubernetes**, it orchestrates the entire operational lifecycle: from ingesting alerts (Prometheus), triggering P1 incidents (PagerDuty), spinning up War Rooms (Slack), executing automated remediation (Python Runbooks), to finally generating post-mortem audit trails (Jira/Confluence). 
-
----
-
-## 📉 The Operational Fragmentation Problem
-
-Without a dedicated Operations Landing Zone, organizations face:
-- **Chaotic Incident Response**: No single source of truth for active P1s; commanders waste time finding the right dashboard instead of fixing the problem.
-- **Runbook Decay**: Manual procedures documented in static wikis quickly become outdated and dangerous to execute.
-- **Security & Blast Radius**: Engineers have overly broad SSH/Console access to production because there is no automated, secure proxy for operational tasks.
-- **"Toil" Accumulation**: SREs spend 70% of their time manually restarting pods or resizing disks instead of engineering permanent solutions.
+This platform provides the **Operations Intelligence Plane**. It implements a complete **Enterprise Operations-as-Code Framework**, enabling SRE and Platform teams to manage service reliability as a first-class citizen. By automating the detection of service degradation and orchestrating real-time self-healing workflows, we ensure that every organizational asset—from global API gateways to backend database clusters—is monitored by default, resilient to failure, and strictly aligned with institutional availability SLAs.
 
 ---
 
-## 🚀 Strategic Drivers & Business Outcomes
+## 📐 Architecture Storytelling: Principal Reference Models
 
-### 🎯 Strategic Drivers
-- **"Runbooks as Code" (RaC)**: Transitioning from human-readable wiki pages to executable, version-controlled Python/Terraform scripts triggered via UI or API.
-- **Event-Driven Auto-Remediation**: Connecting the Alerting pipeline directly to the Runbook engine to fix common issues (e.g., clearing caches, restarting deadlocked services) without waking up a human.
-- **Zero-Trust Operations**: Forcing all operational changes through a centralized, audited API rather than direct SSH access, adhering to strict compliance standards.
+### 1. Principal Architecture: Global Operations Landing Zone & Service Management Control Plane
+This diagram illustrates the end-to-end flow from multi-cloud telemetry ingestion and AIOps analysis to automated remediation, incident escalation, and institutional operations auditing.
 
-### 💰 Business Outcomes
-- **Slashed MTTR**: Automated diagnostics and single-click remediation workflows cut critical incident response times by up to 60%.
-- **Toil Reduction**: Freeing up senior engineers from repetitive tasks, improving team morale and enabling focus on architectural scaling.
-- **Audit Defensibility**: Automatically generating immutable logs of exactly who executed which runbook, when, and the resulting system state.
+```mermaid
+graph LR
+    %% Subgraph Definitions
+    subgraph TelemetryIngress["Telemetry & Signal Ingress"]
+        direction TB
+        Logs["Log Streams (ELK/Splunk)"]
+        Metrics["Metric Feeds (Prometheus)"]
+        Traces["Distributed Traces (OTel)"]
+    end
+
+    subgraph IntelligenceEngine["Operations Intelligence Hub"]
+        direction TB
+        API["FastAPI Operations Gateway"]
+        AIOps["Anomaly & Noise Reducer"]
+        Remediator["Self-Healing Orchestrator"]
+        Escalator["Incident & SLA Manager"]
+    end
+
+    subgraph ExecutionPlane["Automated Remediation Fleet"]
+        direction TB
+        Runbook["Python/Ansible Runbooks"]
+        HPA["Auto-Scaling Controllers"]
+        Restart["Self-Healing Workers"]
+    end
+
+    subgraph OperationsHub["Institutional Operations Hub"]
+        direction TB
+        Scorecard["Ops Maturity Scorecard"]
+        Analytics["Availability & MTTR Stats"]
+        Audit["Forensic Ops Metadata Lake"]
+    end
+
+    subgraph DevOps["Operations-as-Code Orchestration"]
+        direction TB
+        TF["Terraform Ops Modules"]
+        ITSM["ITSM Integration (ServiceNow)"]
+        ChatOps["ChatOps (Slack/Teams)"]
+    end
+
+    %% Flow Arrows
+    TelemetryIngress -->|1. Ingest Signals| API
+    API -->|2. Detect Anomaly| AIOps
+    AIOps -->|3. Trigger Remediation| Remediator
+    Remediator -->|4. Execute Fix| Runbook
+    
+    Runbook -->|5. Apply Patch| ExecutionPlane
+    API -->|6. Open Incident| Escalator
+    Escalator -->|7. Notify Team| ChatOps
+    
+    API -->|8. Visualize Health| Scorecard
+    Scorecard -->|9. Track MTTR| Analytics
+    Scorecard -->|10. Record Event| Audit
+    
+    TF -->|11. Provision Hub| IntelligenceEngine
+    ITSM -->|12. Sync Ticket| Escalator
+    Audit -->|13. Improve Runbooks| Remediator
+
+    %% Styling
+    classDef ingress fill:#f5f5f5,stroke:#616161,stroke-width:2px;
+    classDef intel fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef execution fill:#ede7f6,stroke:#311b92,stroke-width:2px;
+    classDef ops fill:#e0f2f1,stroke:#004d40,stroke-width:2px;
+    classDef devops fill:#fffde7,stroke:#f57f17,stroke-width:2px;
+
+    class TelemetryIngress ingress;
+    class IntelligenceEngine intel;
+    class ExecutionPlane execution;
+    class OperationsHub ops;
+    class DevOps devops;
+```
+
+### 2. The Operations Lifecycle Flow
+The continuous path of an operational event from initial monitoring and analysis to active remediation, automation, and forensic auditing.
+
+```mermaid
+graph LR
+    Monitor["Monitor Signals"] --> Analyze["Analyze Anomaly"]
+    Analyze --> Act["Remediate & Fix"]
+    Act --> Automate["Automate Pattern"]
+    Automate --> Audit["Forensic Audit"]
+```
+
+### 3. Hub-and-Spoke Monitoring Topology
+Strategic centralization of log aggregation and metric long-term storage in a "Hub" network, with collectors in "Spoke" environments providing isolated telemetry gathering.
+
+```mermaid
+graph LR
+    Hub["Central Monitoring Hub"] -->|Ingest| SpokeA["App Spoke A"]
+    Hub -->|Ingest| SpokeB["App Spoke B"]
+    SpokeA --- Collector["OTel Collector"]
+```
+
+### 4. AIOps & Intelligence Engine Flow
+Using real-time machine learning to reduce alert noise, cluster related signals into single incidents, and predict potential failures before they impact end users.
+
+```mermaid
+graph TD
+    Signals["Raw Alert Stream"] --> Cluster["Incident Clustering"]
+    Cluster --> Dedupe["Deduplication Engine"]
+    Dedupe --> Predict["Predictive Analysis"]
+    Predict --> Action["Intelligence Action"]
+```
+
+### 5. Self-Healing & Remediation Orchestration
+Automatically responding to common infrastructure failures (e.g., Disk Full, Pod Crash) by triggering pre-validated runbooks and infrastructure-as-code updates.
+
+```mermaid
+graph LR
+    Alert["High-Confidence Alert"] --> Trigger["Remediation Trigger"]
+    Trigger --> Fix["Runbook Execution"]
+    Fix --> Verify["Post-Fix Validation"]
+    Verify --> Resolved["Incident Resolved"]
+```
+
+### 6. Incident Management & Escalation Flow
+Orchestrating the integration between real-time observability signals and institutional ITSM platforms (ServiceNow, Jira) to ensure compliant incident tracking.
+
+```mermaid
+graph LR
+    Ops["Operations Hub"] -->|Create| Ticket["ServiceNow Ticket"]
+    Ticket -->|Escalate| SRE["On-Call Engineer"]
+    SRE -->|Acknowledge| Ticket
+    Ticket -->|Sync| Ops
+```
+
+### 7. Institutional Operations Scorecard
+Grading organizational performance based on key indicators: Service Availability (SLAs), Mean Time to Recovery (MTTR), and Operational Cost Efficiency.
+
+```mermaid
+graph TD
+    Post["Ops Health: 94%"] --> Risk["Toil Density: 6%"]
+    Post --- C1["Availability (99.9%)"]
+    Post --- C2["MTTR (15 Minutes)"]
+```
+
+### 8. Identity & RBAC for Ops Governance
+Managing fine-grained access to remediation runbooks, infrastructure consoles, and audit logs between Platform Ops, SREs, and Incident Responders.
+
+```mermaid
+graph TD
+    Ops["Platform Ops"] --> Hub["Manage Ops Infra"]
+    SRE["SRE Lead"] --> Runbook["Manage Remediation"]
+    Responder["Incident Responder"] --> Action["Execute Diagnostics"]
+```
+
+### 9. IaC Deployment: Operations-as-Code Framework
+Using modular Terraform to deploy and manage the versioned distribution of the operations hubs, monitoring collectors, and automated remediation workers.
+
+```mermaid
+graph LR
+    HCL["Infrastructure Code"] --> TF["Terraform Apply"]
+    TF --> Engine["Operations Control Plane"]
+    Engine --> Clusters["HA Monitoring Clusters"]
+```
+
+### 10. Log Aggregation & Forensic Sink Mesh
+Centralizing global telemetry logs into high-durability, searchable storage for long-term forensic analysis, compliance auditing, and threat hunting.
+
+```mermaid
+graph LR
+    Apps["Application Logs"] --> Sink["Forensic Log Sink"]
+    Audit["Audit Event Logs"] --> Sink
+    Sink --- Search["Elastic/Splunk Search"]
+```
+
+### 11. Metadata Lake for Forensic Operations Audit
+Storing long-term records of every alert, remediation action, incident timeline, and system state change for institutional record-keeping and post-mortems.
+
+```mermaid
+graph LR
+    Incident["Incident Event"] --> Stream["Forensic Stream"]
+    Stream --> Lake["Operations Metadata Lake"]
+    Lake --> Trends["Reliability & Toil Trends"]
+```
 
 ---
 
-## 📐 Architecture Storytelling: 80+ Advanced Diagrams
-
-### 1. Unified Operations Architecture
-*How alerts transition into automated or manual remediation.*
-```mermaid
-graph TD
-    subgraph "Multi-Cloud Environments"
-        AWS[AWS Workloads]
-        Azure[Azure Workloads]
-        K8s[Kubernetes Fleets]
-    end
-
-    subgraph "Operations Landing Zone"
-        Alerts[Alert Manager]
-        Inc[Incident Command Engine]
-        Runbk[Runbook Automation Engine]
-        Gov[Governance & Audit DB]
-    end
-
-    subgraph "Integrations"
-        Slack[ChatOps / Slack]
-        PD[PagerDuty]
-        Jira[Jira ITSM]
-    end
-
-    AWS & Azure & K8s -->|Metrics/Alerts| Alerts
-    Alerts -->|High Sev| Inc
-    Alerts -->|Low Sev/Known| Runbk
-    
-    Inc --> PD
-    Inc --> Slack
-    Inc --> Jira
-    
-    Runbk -->|Execute Fix| AWS
-    Runbk -->|Execute Fix| K8s
-    
-    Inc & Runbk -->|Audit Trail| Gov
-```
-
-### 2. Event-Driven Auto-Remediation Flow
-*Self-healing systems via Operations Landing Zone.*
-```mermaid
-sequenceDiagram
-    participant K8s as Target Cluster
-    participant Prom as Prometheus
-    participant Ops as Ops Platform
-    participant Jira as ITSM (Jira)
-
-    K8s->>Prom: Metric: Disk Usage > 90%
-    Prom->>Ops: Firing Alert: DiskPressure
-    Note over Ops: Look up Runbook: 'Resize-PVC.py'
-    
-    Ops->>Ops: Execute Runbook (Automated)
-    Ops->>K8s: API Call: Patch PVC Size +20%
-    
-    K8s-->>Ops: Success
-    Ops->>Jira: Create closed ticket: "Auto-remediated Disk Pressure on Node-A"
-```
-
-### 3. Incident Command Lifecycle
-```mermaid
-stateDiagram-v2
-    [*] --> Triage: Alert Received
-    Triage --> Investigating: PagerDuty Ack
-    Investigating --> Identified: Root Cause Found
-    Identified --> Mitigating: Running Fixes
-    Mitigating --> Resolved: Service Restored
-    Resolved --> PostMortem: Generate RCA Doc
-    PostMortem --> [*]: Action Items Created
-```
-
-### 4. Zero-Trust Operational Access
-```mermaid
-graph LR
-    User[SRE / Developer] -->|OIDC Auth| UI[Ops Dashboard]
-    UI -->|Request Action| API[Ops API]
-    API -->|Evaluate RBAC| OPA[Policy Engine]
-    OPA -->|Approved| Worker[Execution Worker]
-    Worker -->|Assume IAM Role| Prod[Production System]
-    
-    Note over User,Prod: No direct SSH or DB access required
-```
-
-### 5. ChatOps Incident Integration
-```mermaid
-graph TD
-    User[SRE in Slack] -->|/ops run diagnostic| Bot[Slack App]
-    Bot --> API[Ops Platform API]
-    API --> Runbook[Diagnostic Script]
-    Runbook -->|Queries DB/Logs| API
-    API -->|Formats Result| Bot
-    Bot --> User[Displays CPU/Mem/Log Snippet in Slack]
-```
-
-### 6. Disaster Recovery Drill Workflow
-```mermaid
-graph TD
-    Trigger[Monthly DR Cron] --> DB[Clone Database]
-    DB --> Traffic[Route Synthetic Traffic]
-    Traffic --> Validate[Run E2E Validation]
-    Validate -->|Pass| Cleanup[Destroy DR Env]
-    Validate -->|Fail| Alert[Page Architecture Team]
-```
-
-### 7. Change Management Approval Pipeline
-```mermaid
-graph LR
-    Dev[Developer] -->|Proposes TF Change| PR[GitHub PR]
-    PR --> Plan[Terraform Plan]
-    Plan --> Ops[Ops Platform API]
-    Ops -->|Risk > Medium| CAB[Manual CAB Approval]
-    Ops -->|Risk = Low| Auto[Auto-Approve]
-    
-    CAB & Auto --> Merge[Merge & Apply]
-```
-
-### 8. Runbook execution lifecycle
-```mermaid
-stateDiagram-v2
-    [*] --> Requested
-    Requested --> ValidatingParameters
-    ValidatingParameters --> Queued
-    Queued --> Running
-    Running --> Success
-    Running --> Failed
-    Success --> [*]
-    Failed --> [*]
-```
-
-### 9. Alert suppression logic
-```mermaid
-graph LR
-    A[Alert] --> S[Suppr]
-    S --> E[Eval]
-```
-
-### 10. Maintenance window scheduler
-```mermaid
-graph LR
-    M[Main] --> S[Sche]
-```
-
-### 11. Incident escalation policy
-```mermaid
-graph LR
-    I[Inci] --> E[Esca]
-```
-
-### 12. Cross-region failover automation
-```mermaid
-graph LR
-    F[Fail] --> A[Auto]
-```
-
-### 13. Infrastructure cost reporting
-```mermaid
-graph LR
-    C[Cost] --> R[Repo]
-```
-
-### 14. Orphaned resource cleanup
-```mermaid
-graph LR
-    O[Orph] --> C[Clea]
-```
-
-### 15. SSL certificate renewal runbook
-```mermaid
-graph LR
-    S[SSL] --> R[Rene]
-```
-
-### 16. Database credential rotation
-```mermaid
-graph LR
-    D[Data] --> C[Cred]
-```
-
-### 17. Node cordoning and draining
-```mermaid
-graph LR
-    N[Node] --> D[Drai]
-```
-
-### 18. Auto-scaling group manipulation
-```mermaid
-graph LR
-    A[ASG] --> M[Mani]
-```
-
-### 19. WAF rule IP block execution
-```mermaid
-graph LR
-    W[WAF] --> B[Bloc]
-```
-
-### 20. Synthetic test failure handling
-```mermaid
-graph LR
-    S[Synt] --> F[Fail]
-```
-
-### 21. SLO breach notification
-```mermaid
-graph LR
-    S[SLO] --> B[Brea]
-```
-
-### 22. GitOps sync force trigger
-```mermaid
-graph LR
-    G[GitO] --> F[Forc]
-```
-
-### 23. Chaos engineering experiment
-```mermaid
-graph LR
-    C[Chao] --> E[Expe]
-```
-
-### 24. Audit log archival
-```mermaid
-graph LR
-    A[Audi] --> A[Arch]
-```
-
-### 25. Terraform state unlock
-```mermaid
-graph LR
-    T[Terr] --> U[Unlo]
-```
-
-### 26. Dead letter queue replay
-```mermaid
-graph LR
-    D[DLQ] --> R[Repl]
-```
-
-### 27. ElasticSearch index rollover
-```mermaid
-graph LR
-    E[Elas] --> R[Roll]
-```
-
-### 28. Redis cache flush automation
-```mermaid
-graph LR
-    R[Redi] --> F[Flus]
-```
-
-### 29. User access revocation
-```mermaid
-graph LR
-    U[User] --> R[Revo]
-```
-
-### 30. Executive status page update
-```mermaid
-graph LR
-    E[Exec] --> S[Stat]
-```
-
-### 31. Infrastructure: Ops Cluster
-```mermaid
-graph LR
-    I[Infr] --> O[OpsC]
-```
-
-### 32. Infrastructure: Postgres DB
-```mermaid
-graph LR
-    I[Infr] --> P[Post]
-```
-
-### 33. Infrastructure: Redis Queue
-```mermaid
-graph LR
-    I[Infr] --> R[Redi]
-```
-
-### 34. Infrastructure: Bastion Host
-```mermaid
-graph LR
-    I[Infr] --> B[Bast]
-```
-
-### 35. Worker: Incident router
-```mermaid
-graph LR
-    W[Work] --> I[Inci]
-```
-
-### 36. Worker: Runbook executor
-```mermaid
-graph LR
-    W[Work] --> R[Runb]
-```
-
-### 37. Worker: Governance checker
-```mermaid
-graph LR
-    W[Work] --> G[Govn]
-```
-
-### 38. CI/CD: Runbook testing
-```mermaid
-graph LR
-    C[CICD] --> R[Runb]
-```
-
-### 39. CI/CD: Platform deployment
-```mermaid
-graph LR
-    C[CICD] --> P[Plat]
-```
-
-### 40. API: Trigger runbook
-```mermaid
-graph LR
-    A[API] --> T[Trig]
-```
-
-### 41. API: List incidents
-```mermaid
-graph LR
-    A[API] --> L[List]
-```
-
-### 42. Frontend: Runbook UI
-```mermaid
-graph LR
-    F[Fron] --> R[Runb]
-```
-
-### 43. Frontend: Incident board
-```mermaid
-graph LR
-    F[Fron] --> I[Inci]
-```
-
-### 44. Security: JIT access request
-```mermaid
-graph LR
-    S[Secu] --> J[JIT]
-```
-
-### 45. Security: Credential injection
-```mermaid
-graph LR
-    S[Secu] --> C[Cred]
-```
-
-### 46. Integration: PagerDuty sync
-```mermaid
-graph LR
-    I[Inte] --> P[PD]
-```
-
-### 47. Integration: Jira ticket sync
-```mermaid
-graph LR
-    I[Inte] --> J[Jira]
-```
-
-### 48. Integration: ServiceNow CMDB
-```mermaid
-graph LR
-    I[Inte] --> S[SNOW]
-```
-
-### 49. Custom script repository
-```mermaid
-graph LR
-    C[Cust] --> S[Scri]
-```
-
-### 50. Parameterized runbook inputs
-```mermaid
-graph LR
-    P[Para] --> I[Inpu]
-```
-
-### 51. Multi-step workflow orchestration
-```mermaid
-graph LR
-    M[Mult] --> W[Work]
-```
-
-### 52. Dry-run mode execution
-```mermaid
-graph LR
-    D[DryR] --> M[Mode]
-```
-
-### 53. Output log streaming
-```mermaid
-graph LR
-    O[Outp] --> S[Stre]
-```
-
-### 54. Runbook execution timeout
-```mermaid
-graph LR
-    R[Runb] --> T[Time]
-```
-
-### 55. Retry logic & backoff
-```mermaid
-graph LR
-    R[Retr] --> B[Back]
-```
-
-### 56. Approval gate pauses
-```mermaid
-graph LR
-    A[Appr] --> G[Gate]
-```
-
-### 57. Post-execution validation
-```mermaid
-graph LR
-    P[Post] --> V[Vali]
-```
-
-### 58. Webhook callback triggers
-```mermaid
-graph LR
-    W[Webh] --> T[Trig]
-```
-
-### 59. Automated RCA generation
-```mermaid
-graph LR
-    A[Auto] --> R[RCA]
-```
-
-### 60. Incident timeline extraction
-```mermaid
-graph LR
-    I[Inci] --> T[Time]
-```
-
-### 61. Slack transcript archival
-```mermaid
-graph LR
-    S[Slac] --> A[Arch]
-```
-
-### 62. On-call handover summary
-```mermaid
-graph LR
-    O[OnCa] --> H[Hand]
-```
-
-### 63. Executive summary export
-```mermaid
-graph LR
-    E[Exec] --> S[Summ]
-```
-
-### 64. Action item tracking
-```mermaid
-graph LR
-    A[Acti] --> T[Trac]
-```
-
-### 65. Blameless culture metrics
-```mermaid
-graph LR
-    B[Blam] --> M[Metr]
-```
-
-### 66. Mean Time to Acknowledge (MTTA)
-```mermaid
-graph LR
-    M[MTTA] --> T[Trac]
-```
-
-### 67. Mean Time to Resolve (MTTR)
-```mermaid
-graph LR
-    M[MTTR] --> T[Trac]
-```
-
-### 68. Alert fatigue analysis
-```mermaid
-graph LR
-    A[Aler] --> F[Fati]
-```
-
-### 69. Runbook success rate tracking
-```mermaid
-graph LR
-    R[Runb] --> S[Succ]
-```
-
-### 70. Auto-remediation ROI calculation
-```mermaid
-graph LR
-    A[Auto] --> R[ROI]
-```
-
-### 71. Tagging policy enforcement
-```mermaid
-graph LR
-    T[Tagg] --> P[Poli]
-```
-
-### 72. IAM permission boundary audit
-```mermaid
-graph LR
-    I[IAM] --> B[Boun]
-```
-
-### 73. Public S3 bucket detection
-```mermaid
-graph LR
-    P[Publ] --> S[S3]
-```
-
-### 74. Security group drift correction
-```mermaid
-graph LR
-    S[SecG] --> D[Drif]
-```
-
-### 75. Untagged resource termination
-```mermaid
-graph LR
-    U[Unta] --> T[Term]
-```
-
-### 76. Secret rotation validation
-```mermaid
-graph LR
-    S[Secr] --> R[Rota]
-```
-
-### 77. Image vulnerability response
-```mermaid
-graph LR
-    I[Imag] --> V[Vuln]
-```
-
-### 78. Out-of-band change detection
-```mermaid
-graph LR
-    O[OOB] --> C[Chan]
-```
-
-### 79. Platform version matrix validation
-```mermaid
-graph LR
-    P[Plat] --> V[Vers]
-```
-
-### 80. Enterprise Operations Maturity
-```mermaid
-graph LR
-    E[Entr] --> O[OpsM]
-```
+## 🏛️ Core Operations Pillars
+
+1.  **Observability-First Design**: Implementing comprehensive logging, metrics, and tracing as a foundational requirement.
+2.  **Automated Self-Healing**: Shifting from manual "Toil" to event-driven remediation for high-confidence failures.
+3.  **AIOps Intelligence**: Reducing operational noise and accelerating root-cause analysis through automated signal clustering.
+4.  **Unified Incident Governance**: Orchestrating a single source of truth for all operational events across the enterprise.
+5.  **Runbook-as-Code Framework**: Managing operational procedures as version-controlled, executable code.
+6.  **Full Operational Auditability**: Immutable recording of every remediation action and system change for institutional forensics.
 
 ---
 
 ## 🛠️ Technical Stack & Implementation
 
 ### Operations Engine & APIs
-- **Framework**: Python 3.11+ / FastAPI.
-- **Runbook Engine**: Python executing dynamic scripts, utilizing Terraform/Ansible SDKs.
-- **Persistence**: PostgreSQL (Audit logs, incident state, runbook definitions).
-- **Task Orchestration**: Redis & Celery (Asynchronous runbook execution & alert queuing).
+*   **Framework**: Python 3.11+ / FastAPI.
+*   **Remediation Core**: Integration with Celery/Redis for high-performance, asynchronous runbook execution.
+*   **Observability Bridge**: Native integration with Prometheus, Loki, and OpenTelemetry.
+*   **Persistence**: PostgreSQL (Incident State & Metadata) and Redis (Live Alert Queue).
+*   **Auth Orchestrator**: Federated OIDC/SAML for least-privilege operational access.
 
-### Frontend (Operations Command Center)
-- **Framework**: React 18 / Vite.
-- **Visuals**: Recharts (Incident Trends).
-- **Theme**: Dark, Blue, Emerald (Calm, Operational focus).
+### Operations Dashboard (UI)
+*   **Framework**: React 18 / Vite.
+*   **Theme**: Dark, Blue, Emerald (Modern calm operational aesthetic).
+*   **Visualization**: Recharts for incident trends, MTTR analytics, and service health heatmaps.
 
-### Infrastructure
-- **Runtime**: AWS EKS (Dedicated highly-available cluster, separate from product workloads).
-- **IaC**: Terraform.
-- **Access**: Secure OIDC integration ensuring operators have no standing SSH access to product nodes.
+### Infrastructure & DevOps
+*   **Runtime**: AWS EKS or Azure Kubernetes Service (AKS).
+*   **Connectivity**: Hub-and-Spoke monitoring transit with integrated Private Link for telemetry.
+*   **IaC**: Modular Terraform for deploying the operations hub and collector distributions.
+
+---
+
+## 🏗️ IaC Mapping (Module Structure)
+
+| Module | Purpose | Real Services |
+| :--- | :--- | :--- |
+| **`infrastructure/ops_hub`** | Central management plane | EKS, PostgreSQL, Redis |
+| **`infrastructure/monitoring`** | Telemetry collectors | Prometheus, OTel, Loki |
+| **`infrastructure/automation`** | Remediation workers | Celery, Python, Ansible |
+| **`infrastructure/auditing`** | Forensic metadata sinks | S3, Athena, Quicksight |
 
 ---
 
 ## 🚀 Deployment Guide
 
-### Local Development
+### Local Principal Environment
 ```bash
-# Clone the repository
+# Clone the operations platform
 git clone https://github.com/devopstrio/operations-landingzone.git
 cd operations-landingzone
 
-# Setup environment
+# Configure environment
 cp .env.example .env
 
-# Launch the operations stack (DB, Redis, API, Workers, UI)
-make up
+# Launch the Operations stack
+make init
 
-# Simulate a P1 incident and auto-remediation workflow
+# Trigger a mock P1 incident and auto-remediation simulation
 make simulate-incident
 ```
+
 Access the Operations Dashboard at `http://localhost:3000`.
 
 ---
 
 ## 📜 License
 Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+<div align="center">
+  <p>© 2026 Devopstrio. All rights reserved.</p>
+</div>
